@@ -90,6 +90,7 @@ This project relies on 8 distinct resources deployed within a single Azure Resou
 To populate the raw Bronze container, I engineered **5 distinct ADF Pipelines** to handle three different data sources (GitHub, SQL, REST API):
 
 * **`pipelineGit`:** Utilizes a Copy Activity to migrate files directly from a GitHub repository into the Bronze container.
+  
   ![pipelineGit](https://github.com/YashJain8126/azure-multi-source-dynamic-ingestion-medallion/blob/main/azure-multi-source-dynamic-ingestion-medallion_pipelineGit.png?raw=true)
 
 * **`pipelineNYCTaxi`:** A dynamic pipeline fetching data from a REST API. It uses a `ForEach` Activity, `If Condition`, and `Copy` Activity to iterate through API endpoints and dump the NYC Taxi data into ADLS in Parquet format.
