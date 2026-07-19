@@ -99,12 +99,14 @@ To populate the raw Bronze container, I engineered **5 distinct ADF Pipelines** 
 * **`pipelineIncremental`:** A highly complex, parameterized pipeline handling incremental loads and backfills from the **Azure SQL Database**.
   * *Incremental Logic:* Reads a CDC JSON file containing a watermark (e.g., `1900-01-01`). It uses `Lookup`, `SetVariable`, and `Copy` activities to fetch records where the timestamp exceeds the watermark. A `Delete` activity and subsequent Copy updates the JSON file with the new `MAX(updated_at)`.
   * *Backfill Logic:* Evaluates a `from_date` parameter using an `If Condition`. If empty, the pipeline runs the incremental logic. If a date is provided, it triggers a backdate refresh, loading historical data without breaking the CDC watermark.
+    
   ![pipelineIncremental](https://github.com/YashJain8126/azure-multi-source-dynamic-ingestion-medallion/blob/main/azure-multi-source-dynamic-ingestion-medallion_pipelineIncremental.png?raw=true)
 
 * **`onlyTaxiContainingFiles`:** A file-filtering pipeline inside the Data Lake. It uses a `GetMetadata` Activity to read the container, a `ForEach` Activity to iterate through files, and an `If Condition` to migrate *only* the files starting with the string `"taxi"` using a Copy Activity.
+  
   ![onlyTaxiContainingFiles](https://github.com/YashJain8126/azure-multi-source-dynamic-ingestion-medallion/blob/main/azure-multi-source-dynamic-ingestion-medallion_onlyTaxiContainingFile.png?raw=true)
 
-* **`Prod pipeline`:** The master orchestrator. It uses `Execute Pipeline` activities to trigger the ingestion pipelines, and features a `Web Activity` to trigger the **Azure Logic App** REST API for alerts.
+* **`Prod pipeline`:** The master orchestrator. It uses `Execute Pipeline` activities to trigger the ingestion pipelines, and features a `Web Activity` to trigger the **Azure Logic App** POST API for alerts.
   ![Prod Pipeline](https://github.com/YashJain8126/azure-multi-source-dynamic-ingestion-medallion/blob/main/azure-multi-source-dynamic-ingestion-medallion_ProdPipeline.png?raw=true)
 
 ### 2. Silver Layer (Transformation via PySpark)
