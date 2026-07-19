@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "adfFinalMegaProject"
+		},
+		"LS_DataLake_accountKey": {
+			"value": ""
+		},
+		"LS_SQL_password": {
+			"value": ""
+		},
+		"LS_DataLake_properties_typeProperties_url": {
+			"value": "https://finalmegaprojectdl.dfs.core.windows.net/"
+		},
+		"LS_Git_Taxi_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
+		"LS_SQL_properties_typeProperties_server": {
+			"value": "azurefinalmegaproject3server.database.windows.net"
+		},
+		"LS_SQL_properties_typeProperties_database": {
+			"value": "azurefinalmegaproject3db"
+		},
+		"LS_SQL_properties_typeProperties_userName": {
+			"value": "adminyash"
+		},
+		"LS_Web_properties_typeProperties_url": {
+			"value": "https://d37ci6vzurychx.cloudfront.net"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
