@@ -1,0 +1,15 @@
+{
+	"name": "adfFinalMegaProject",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "ukwest",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7b1cd1ff-2615-42e5-b56c-4da40262edf2",
+		"tenantId": "9991671c-05c8-409e-8d16-c9bbd64a93ec"
+	}
+}
